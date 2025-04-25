@@ -1,0 +1,52 @@
+{
+  "experiments": [
+    {
+      "name": "reddit",
+      "sets": [
+        {
+          "runs": [
+            {
+              "input": "tell me something cool from reddit",
+              "output": {
+                "role": "assistant",
+                "content": null,
+                "tool_calls": [
+                  {
+                    "id": "call_E4kJ8RYJ12B2OvddflYMU3XG",
+                    "type": "function",
+                    "function": {
+                      "name": "get_reddit_post",
+                      "arguments": "{}"
+                    }
+                  }
+                ],
+                "refusal": null,
+                "annotations": []
+              },
+              "expected": {
+                "role": "assistant",
+                "tool_calls": [
+                  {
+                    "type": "function",
+                    "function": {
+                      "name": "get_reddit_post"
+                    }
+                  }
+                ]
+              },
+              "scores": [
+                {
+                  "name": "ToolCallMatch",
+                  "score": 1
+                }
+              ],
+              "createdAt": "2025-04-25T13:12:44.611Z"
+            }
+          ],
+          "score": 1,
+          "createdAt": "2025-04-25T13:12:44.611Z"
+        }
+      ]
+    }
+  ]
+}

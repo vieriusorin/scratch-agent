@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import type { ToolFn } from '../../types';
+import type { ToolFn } from '../types';
 import { openai } from '../ai';
 
 /**

@@ -7,7 +7,7 @@ export type AIMessage =
   | { role: 'tool'; content: string; tool_call_id: string }
 
 export interface ToolFn<A = any, T = any> {
-  (input: { userMessage: string; toolArgs: A }): Promise<T>
+  (input: { userMessage: string; toolArgs: A; systemContext?: any }): Promise<T>
 }
 
 export type Results = {

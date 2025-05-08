@@ -1,5 +1,5 @@
 import { z} from 'zod';
-import type { ToolFn } from '../../types';
+import type { ToolFn } from '../types';
 import fetch from 'node-fetch';
 
 /**
@@ -21,7 +21,7 @@ export const dadJokeTookDefinition = {
     }
 }
 
-type Args = z.infer<typeof dadJokeTookDefinition.parameters> // Creates a type from the parameters schema
+type Args = z.infer<typeof dadJokeTookDefinition.parameters> 
 
 export const getDadJoke: ToolFn<Args, string> = async ({ toolArgs }) => {
     const response = await fetch('https://icanhazdadjoke.com/', {

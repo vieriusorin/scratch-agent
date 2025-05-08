@@ -15,7 +15,6 @@ ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, T
 const App = () => {
   const results = resultsData as unknown as Results
   
-  // Use custom hooks to manage state and data processing
   const { selectedExperiment, setSelectedExperiment, limitedExperiment } = 
     useExperimentSelection(results.experiments)
     
@@ -33,25 +32,21 @@ const App = () => {
       />
 
       <div className="dashboard-grid">
-        {/* Full width card for experiment graph */}
         {limitedExperiment && (
           <div className="dashboard-card full-width-card">
             <h2>Experiment Results</h2>
             <ExperimentGraph experiment={limitedExperiment} />
           </div>
         )}
-        
-        {/* Confidence intervals card */}
+
         <div className="dashboard-card">
           <ConfidenceIntervals confidenceData={confidenceData} />
         </div>
         
-        {/* Historical trend card */}
         <div className="dashboard-card">
           <HistoricalTrend historicalData={historicalData} />
         </div>
         
-        {/* Analytics section card */}
         <div className="dashboard-card full-width-card">
           <AnalyticsSection problematicCases={problematicCases} />
         </div>

@@ -14,7 +14,6 @@ interface HistoricalTrendProps {
 const HistoricalTrend: React.FC<HistoricalTrendProps> = ({ historicalData }) => {
   if (!historicalData) return <p>No historical data available.</p>;
   
-  // Process data for chart
   const dates = historicalData.map(entry => entry.date);
   const averageScores = historicalData.map(entry => entry.averageScore);
   const lowerBounds = historicalData.map(entry => entry.lowerBound || entry.averageScore - 0.05);

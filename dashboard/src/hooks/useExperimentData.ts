@@ -11,15 +11,14 @@ export const useExperimentData = (results: any) => {
   const [historicalData, setHistoricalData] = useState<HistoricalDataPoint[] | null>(null);
   const [problematicCases, setProblematicCases] = useState<ProblematicCase[]>([]);
 
-  // Load confidence data
+
   useEffect(() => {
     if (results) {
       const data = calculateConfidenceIntervals(results);
-      setConfidenceData(data);
+      setConfidenceData(data.filter(d => d !== null));
     }
   }, [results]);
 
-  // Load historical data
   useEffect(() => {
     const loadHistoricalData = async () => {
       try {
@@ -33,7 +32,6 @@ export const useExperimentData = (results: any) => {
     loadHistoricalData();
   }, [results]);
 
-  // Load problematic cases
   useEffect(() => {
     if (results) {
       const problematic = identifyProblematicCases(results);

@@ -13,3 +13,80 @@ select {
   padding: 0.5rem;
   font-size: 1rem;
 }
+
+/* Confidence Interval Styles */
+.confidence-section {
+  margin: 20px 0;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+}
+
+.confidence-chart {
+  margin-top: 15px;
+  overflow-x: auto;
+}
+
+.confidence-chart table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.confidence-chart th, .confidence-chart td {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.confidence-chart th {
+  background-color: #f2f2f2;
+}
+
+/* Historical Trend Styles */
+.historical-trend {
+  margin: 20px 0;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+}
+
+.trend-chart {
+  height: 300px;
+  margin-top: 15px;
+}
+
+/* Problematic Cases Styles */
+.analytics-section {
+  margin: 20px 0;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+}
+
+.problematic-cases {
+  margin-top: 15px;
+  overflow-x: auto;
+}
+
+.problematic-cases table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.problematic-cases th, .problematic-cases td {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.problematic-cases th {
+  background-color: #f2f2f2;
+}
+
+.problematic-row {
+  background-color: #fff0f0;
+}
+
+.problematic-row:hover {
+  background-color: #ffe0e0;
+}

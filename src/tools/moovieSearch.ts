@@ -1,4 +1,4 @@
-import type { ToolFn } from "../../types";
+import type { ToolFn } from "../types";
 import { queryMovies } from "../rag/query";
 import { z } from "zod";
 

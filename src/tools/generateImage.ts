@@ -15,7 +15,7 @@ export const generateImageToolDefinition = {
     description: 'Generate an image',
     parameters: z.object({
         // Info: .describe() is used to add a description to the field. to guide the user.
-        prompt: z.string().describe('The prompt to generate an image. Be sure to consider the style, the mood, and the context. Be sure to consider the users preferences and the users current situation. If you are unsure, ask the user for clarification.'), 
+        prompt: z.string().describe('The prompt is used to generate an image or take a photo. Be sure to consider the style, the mood, and the context. Be sure to consider the users preferences and the users current situation. If you are unsure, ask the user for clarification.'), 
     }),
     fn: async ({ prompt }: { prompt: string }) => {
         return `Here is an image: ${prompt}`

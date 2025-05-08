@@ -1,0 +1,11 @@
+{
+    "concurrency": 5,
+    "maxRetries": 3,
+    "retryBackoffMultiplier": 2,
+    "maxRetryBackoffMs": 30000,
+    "initialRetryDelayMs": 1000,
+    "progressInterval": 5,
+    "dbPath": "results.json",
+    "logLevel": "info",
+    "confidenceLevel": 0.95
+  }

@@ -1,5 +1,5 @@
 import { runLLM } from "../../llm";
-import { redditToolDefinition } from "../../tools/reddit";
+import { generateImageToolDefinition } from "../../tools/generateImage";
 import { runEval } from "../evalTools";
 import { ToolCallMatch } from "../scores";
 
@@ -20,20 +20,16 @@ const createToolCallMessage = (toolName: string) => ({
  * We use the createToolCallMessage function to create the tool call message.
  * We use the ToolCallMatch scorer to score the output.
  */
-runEval('reddit', {
+runEval('generateImage', {
     task: (input) =>
         runLLM({
             messages: [{ role: 'user', content: input }],
-            tools: [redditToolDefinition],
+            tools: [generateImageToolDefinition],
         }) as Promise<any>,
     data: [
         {
-            input: 'tell me something cool from reddit',
-            expected: createToolCallMessage(redditToolDefinition.name),
-        },
-        {
-            input: 'hi',
-            expected: createToolCallMessage(redditToolDefinition.name),
+            input: 'Generate an image of a cat',
+            expected: createToolCallMessage(generateImageToolDefinition.name),
         },
     ],
     scorers: [ToolCallMatch],

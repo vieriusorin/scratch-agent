@@ -11,7 +11,7 @@ const __dirname = dirname(__filename)
 /**
  * Checks if a file exists
  */
-const fileExists = async (path) => {
+const fileExists = async (path: string): Promise<boolean> => {
   try {
     await access(path, constants.F_OK)
     return true
@@ -23,7 +23,7 @@ const fileExists = async (path) => {
 /**
  * Safely imports a module ensuring Windows compatibility
  */
-const safeImport = async (path) => {
+const safeImport = async (path: string) => {
   // Ensure the path is absolute
   const absolutePath = resolve(path)
   

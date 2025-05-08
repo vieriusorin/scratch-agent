@@ -1,13 +1,13 @@
 import type { Score } from 'autoevals'
 
-export type StatisticalMetrics = {
+export type StatisticalMetrics = Readonly<{
   mean: number
   median: number
   standardDeviation: number
   confidenceInterval95: [number, number]
   min: number
   max: number
-}
+}>
 
 export type Run = {
   input: any

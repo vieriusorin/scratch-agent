@@ -1568,6 +1568,264 @@
             "isSignificant": true,
             "effectSize": 0
           }
+        },
+        {
+          "runs": [
+            {
+              "input": "tell me something cool from reddit",
+              "output": {
+                "role": "assistant",
+                "content": null,
+                "tool_calls": [
+                  {
+                    "id": "call_5zu2Q3Y1u5AVBkNhf7zkNCrq",
+                    "type": "function",
+                    "function": {
+                      "name": "get_reddit_post",
+                      "arguments": "{}"
+                    }
+                  }
+                ],
+                "refusal": null,
+                "annotations": []
+              },
+              "expected": {
+                "role": "assistant",
+                "tool_calls": [
+                  {
+                    "type": "function",
+                    "function": {
+                      "name": "get_reddit_post"
+                    }
+                  }
+                ]
+              },
+              "scores": [
+                {
+                  "name": "ToolCallMatch",
+                  "score": 1
+                }
+              ],
+              "createdAt": "2025-05-08T10:51:22.178Z"
+            },
+            {
+              "input": "hi",
+              "output": {
+                "role": "assistant",
+                "content": "Hello, John! How can I assist you today?",
+                "refusal": null,
+                "annotations": []
+              },
+              "expected": {
+                "role": "assistant",
+                "tool_calls": [
+                  {
+                    "type": "function",
+                    "function": {
+                      "name": "get_reddit_post"
+                    }
+                  }
+                ]
+              },
+              "scores": [
+                {
+                  "name": "ToolCallMatch",
+                  "score": 0
+                }
+              ],
+              "createdAt": "2025-05-08T10:51:22.178Z"
+            }
+          ],
+          "score": 0.5,
+          "statistics": {
+            "mean": 0.5,
+            "median": 0.5,
+            "standardDeviation": 0.5,
+            "confidenceInterval95": [
+              null,
+              null
+            ],
+            "min": 0,
+            "max": 1
+          },
+          "createdAt": "2025-05-08T10:51:22.179Z",
+          "comparisonToPrevious": {
+            "pValue": 0,
+            "isSignificant": true,
+            "effectSize": 0
+          }
+        },
+        {
+          "runs": [
+            {
+              "input": "tell me something cool from reddit",
+              "output": {
+                "role": "assistant",
+                "content": null,
+                "tool_calls": [
+                  {
+                    "id": "call_2XQVJNmHMjpDO6tSCRD8NSKv",
+                    "type": "function",
+                    "function": {
+                      "name": "get_reddit_post",
+                      "arguments": "{}"
+                    }
+                  }
+                ],
+                "refusal": null,
+                "annotations": []
+              },
+              "expected": {
+                "role": "assistant",
+                "tool_calls": [
+                  {
+                    "type": "function",
+                    "function": {
+                      "name": "get_reddit_post"
+                    }
+                  }
+                ]
+              },
+              "scores": [
+                {
+                  "name": "ToolCallMatch",
+                  "score": 1
+                }
+              ],
+              "createdAt": "2025-05-08T10:53:51.014Z"
+            },
+            {
+              "input": "hi",
+              "output": {
+                "role": "assistant",
+                "content": "Hello, John! How can I assist you today?",
+                "refusal": null,
+                "annotations": []
+              },
+              "expected": {
+                "role": "assistant",
+                "tool_calls": [
+                  {
+                    "type": "function",
+                    "function": {
+                      "name": "get_reddit_post"
+                    }
+                  }
+                ]
+              },
+              "scores": [
+                {
+                  "name": "ToolCallMatch",
+                  "score": 0
+                }
+              ],
+              "createdAt": "2025-05-08T10:53:51.014Z"
+            }
+          ],
+          "score": 0.5,
+          "statistics": {
+            "mean": 0.5,
+            "median": 0.5,
+            "standardDeviation": 0.5,
+            "confidenceInterval95": [
+              null,
+              null
+            ],
+            "min": 0,
+            "max": 1
+          },
+          "createdAt": "2025-05-08T10:53:51.015Z",
+          "comparisonToPrevious": {
+            "pValue": 0,
+            "isSignificant": true,
+            "effectSize": 0
+          }
+        },
+        {
+          "runs": [
+            {
+              "input": "tell me something cool from reddit",
+              "output": {
+                "role": "assistant",
+                "content": null,
+                "tool_calls": [
+                  {
+                    "id": "call_uk20nfJXxrmkopvpcd7qecnY",
+                    "type": "function",
+                    "function": {
+                      "name": "get_reddit_post",
+                      "arguments": "{}"
+                    }
+                  }
+                ],
+                "refusal": null,
+                "annotations": []
+              },
+              "expected": {
+                "role": "assistant",
+                "tool_calls": [
+                  {
+                    "type": "function",
+                    "function": {
+                      "name": "get_reddit_post"
+                    }
+                  }
+                ]
+              },
+              "scores": [
+                {
+                  "name": "ToolCallMatch",
+                  "score": 1
+                }
+              ],
+              "createdAt": "2025-05-08T10:56:34.488Z"
+            },
+            {
+              "input": "hi",
+              "output": {
+                "role": "assistant",
+                "content": "Hello, John! How can I assist you today?",
+                "refusal": null,
+                "annotations": []
+              },
+              "expected": {
+                "role": "assistant",
+                "tool_calls": [
+                  {
+                    "type": "function",
+                    "function": {
+                      "name": "get_reddit_post"
+                    }
+                  }
+                ]
+              },
+              "scores": [
+                {
+                  "name": "ToolCallMatch",
+                  "score": 0
+                }
+              ],
+              "createdAt": "2025-05-08T10:56:34.488Z"
+            }
+          ],
+          "score": 0.5,
+          "statistics": {
+            "mean": 0.5,
+            "median": 0.5,
+            "standardDeviation": 0.5,
+            "confidenceInterval95": [
+              null,
+              null
+            ],
+            "min": 0,
+            "max": 1
+          },
+          "createdAt": "2025-05-08T10:56:34.489Z",
+          "comparisonToPrevious": {
+            "pValue": 0,
+            "isSignificant": true,
+            "effectSize": 0
+          }
         }
       ]
     },
@@ -2822,6 +3080,375 @@
             "isSignificant": true,
             "effectSize": 0
           }
+        },
+        {
+          "runs": [
+            {
+              "input": "Tell me a funny dad joke",
+              "output": {
+                "role": "assistant",
+                "content": null,
+                "tool_calls": [
+                  {
+                    "id": "call_rCz2RrgGVV9yTwtRaAifD9BX",
+                    "type": "function",
+                    "function": {
+                      "name": "get_dad_joke",
+                      "arguments": "{}"
+                    }
+                  }
+                ],
+                "refusal": null,
+                "annotations": []
+              },
+              "expected": {
+                "role": "assistant",
+                "tool_calls": [
+                  {
+                    "type": "function",
+                    "function": {
+                      "name": "get_dad_joke"
+                    }
+                  }
+                ]
+              },
+              "scores": [
+                {
+                  "name": "ToolCallMatch",
+                  "score": 1
+                }
+              ],
+              "createdAt": "2025-05-08T10:51:22.719Z"
+            },
+            {
+              "input": "take a picture of a cat",
+              "output": {
+                "role": "assistant",
+                "content": "I can't take pictures directly, but I can help you generate an image of a cat. Would you like me to create a specific type of cat image for you? If so, please provide some details!",
+                "refusal": null,
+                "annotations": []
+              },
+              "expected": {
+                "role": "assistant",
+                "tool_calls": [
+                  {
+                    "type": "function",
+                    "function": {
+                      "name": "get_dad_joke"
+                    }
+                  }
+                ]
+              },
+              "scores": [
+                {
+                  "name": "ToolCallMatch",
+                  "score": 0
+                }
+              ],
+              "createdAt": "2025-05-08T10:51:22.719Z"
+            },
+            {
+              "input": "Cann you tell me a joke that it will be represented as a picture",
+              "output": {
+                "role": "assistant",
+                "content": null,
+                "tool_calls": [
+                  {
+                    "id": "call_EYJ7W89NQXOabi3HVFjxlJcd",
+                    "type": "function",
+                    "function": {
+                      "name": "get_dad_joke",
+                      "arguments": "{}"
+                    }
+                  }
+                ],
+                "refusal": null,
+                "annotations": []
+              },
+              "expected": {
+                "role": "assistant",
+                "tool_calls": [
+                  {
+                    "type": "function",
+                    "function": {
+                      "name": "get_dad_joke"
+                    }
+                  }
+                ]
+              },
+              "scores": [
+                {
+                  "name": "ToolCallMatch",
+                  "score": 1
+                }
+              ],
+              "createdAt": "2025-05-08T10:51:22.719Z"
+            }
+          ],
+          "score": 0.6666666666666666,
+          "statistics": {
+            "mean": 0.6666666666666666,
+            "median": 1,
+            "standardDeviation": 0.4714045207910317,
+            "confidenceInterval95": [
+              null,
+              null
+            ],
+            "min": 0,
+            "max": 1
+          },
+          "createdAt": "2025-05-08T10:51:22.719Z",
+          "comparisonToPrevious": {
+            "pValue": 0,
+            "isSignificant": true,
+            "effectSize": 0
+          }
+        },
+        {
+          "runs": [
+            {
+              "input": "Tell me a funny dad joke",
+              "output": {
+                "role": "assistant",
+                "content": null,
+                "tool_calls": [
+                  {
+                    "id": "call_Inzi0ocTc2Hs7s1FDEJJKXjt",
+                    "type": "function",
+                    "function": {
+                      "name": "get_dad_joke",
+                      "arguments": "{}"
+                    }
+                  }
+                ],
+                "refusal": null,
+                "annotations": []
+              },
+              "expected": {
+                "role": "assistant",
+                "tool_calls": [
+                  {
+                    "type": "function",
+                    "function": {
+                      "name": "get_dad_joke"
+                    }
+                  }
+                ]
+              },
+              "scores": [
+                {
+                  "name": "ToolCallMatch",
+                  "score": 1
+                }
+              ],
+              "createdAt": "2025-05-08T10:53:51.637Z"
+            },
+            {
+              "input": "take a picture of a cat",
+              "output": {
+                "role": "assistant",
+                "content": "I can't take pictures directly, but I can help you generate an image of a cat. Would you like me to create a digital illustration of a cat for you? If so, please specify any details or styles you'd like!",
+                "refusal": null,
+                "annotations": []
+              },
+              "expected": {
+                "role": "assistant",
+                "tool_calls": [
+                  {
+                    "type": "function",
+                    "function": {
+                      "name": "get_dad_joke"
+                    }
+                  }
+                ]
+              },
+              "scores": [
+                {
+                  "name": "ToolCallMatch",
+                  "score": 0
+                }
+              ],
+              "createdAt": "2025-05-08T10:53:51.637Z"
+            },
+            {
+              "input": "Cann you tell me a joke that it will be represented as a picture",
+              "output": {
+                "role": "assistant",
+                "content": null,
+                "tool_calls": [
+                  {
+                    "id": "call_Cnf7BzkFHDc2VKI5RFg5Zwzf",
+                    "type": "function",
+                    "function": {
+                      "name": "get_dad_joke",
+                      "arguments": "{}"
+                    }
+                  }
+                ],
+                "refusal": null,
+                "annotations": []
+              },
+              "expected": {
+                "role": "assistant",
+                "tool_calls": [
+                  {
+                    "type": "function",
+                    "function": {
+                      "name": "get_dad_joke"
+                    }
+                  }
+                ]
+              },
+              "scores": [
+                {
+                  "name": "ToolCallMatch",
+                  "score": 1
+                }
+              ],
+              "createdAt": "2025-05-08T10:53:51.637Z"
+            }
+          ],
+          "score": 0.6666666666666666,
+          "statistics": {
+            "mean": 0.6666666666666666,
+            "median": 1,
+            "standardDeviation": 0.4714045207910317,
+            "confidenceInterval95": [
+              null,
+              null
+            ],
+            "min": 0,
+            "max": 1
+          },
+          "createdAt": "2025-05-08T10:53:51.637Z",
+          "comparisonToPrevious": {
+            "pValue": 0,
+            "isSignificant": true,
+            "effectSize": 0
+          }
+        },
+        {
+          "runs": [
+            {
+              "input": "Tell me a funny dad joke",
+              "output": {
+                "role": "assistant",
+                "content": null,
+                "tool_calls": [
+                  {
+                    "id": "call_NNEjrMB1sPtpZs4eUHsptlOA",
+                    "type": "function",
+                    "function": {
+                      "name": "get_dad_joke",
+                      "arguments": "{}"
+                    }
+                  }
+                ],
+                "refusal": null,
+                "annotations": []
+              },
+              "expected": {
+                "role": "assistant",
+                "tool_calls": [
+                  {
+                    "type": "function",
+                    "function": {
+                      "name": "get_dad_joke"
+                    }
+                  }
+                ]
+              },
+              "scores": [
+                {
+                  "name": "ToolCallMatch",
+                  "score": 1
+                }
+              ],
+              "createdAt": "2025-05-08T10:56:35.504Z"
+            },
+            {
+              "input": "take a picture of a cat",
+              "output": {
+                "role": "assistant",
+                "content": "I can't take pictures directly, but I can help you generate an image of a cat. Would you like me to create a specific type of cat image for you? If so, please describe what you're looking for!",
+                "refusal": null,
+                "annotations": []
+              },
+              "expected": {
+                "role": "assistant",
+                "tool_calls": [
+                  {
+                    "type": "function",
+                    "function": {
+                      "name": "get_dad_joke"
+                    }
+                  }
+                ]
+              },
+              "scores": [
+                {
+                  "name": "ToolCallMatch",
+                  "score": 0
+                }
+              ],
+              "createdAt": "2025-05-08T10:56:35.504Z"
+            },
+            {
+              "input": "Cann you tell me a joke that it will be represented as a picture",
+              "output": {
+                "role": "assistant",
+                "content": null,
+                "tool_calls": [
+                  {
+                    "id": "call_7dhYruK69tF5X3oQ3sKHy61H",
+                    "type": "function",
+                    "function": {
+                      "name": "get_dad_joke",
+                      "arguments": "{}"
+                    }
+                  }
+                ],
+                "refusal": null,
+                "annotations": []
+              },
+              "expected": {
+                "role": "assistant",
+                "tool_calls": [
+                  {
+                    "type": "function",
+                    "function": {
+                      "name": "get_dad_joke"
+                    }
+                  }
+                ]
+              },
+              "scores": [
+                {
+                  "name": "ToolCallMatch",
+                  "score": 1
+                }
+              ],
+              "createdAt": "2025-05-08T10:56:35.504Z"
+            }
+          ],
+          "score": 0.6666666666666666,
+          "statistics": {
+            "mean": 0.6666666666666666,
+            "median": 1,
+            "standardDeviation": 0.4714045207910317,
+            "confidenceInterval95": [
+              null,
+              null
+            ],
+            "min": 0,
+            "max": 1
+          },
+          "createdAt": "2025-05-08T10:56:35.504Z",
+          "comparisonToPrevious": {
+            "pValue": 0,
+            "isSignificant": true,
+            "effectSize": 0
+          }
         }
       ]
     },
@@ -3488,6 +4115,183 @@
             "max": 1
           },
           "createdAt": "2025-05-08T10:45:37.632Z",
+          "comparisonToPrevious": {
+            "pValue": 1,
+            "isSignificant": false,
+            "effectSize": 0
+          }
+        },
+        {
+          "runs": [
+            {
+              "input": "Generate an image of a cat",
+              "output": {
+                "role": "assistant",
+                "content": null,
+                "tool_calls": [
+                  {
+                    "id": "call_kAkEan96toSxDpPpzdPqwz5F",
+                    "type": "function",
+                    "function": {
+                      "name": "generate_image",
+                      "arguments": "{\"prompt\":\"A cute, fluffy cat sitting on a sunny windowsill, with green plants in the background and a soft, warm light illuminating its fur. The cat has bright, curious eyes and a playful expression.\"}"
+                    }
+                  }
+                ],
+                "refusal": null,
+                "annotations": []
+              },
+              "expected": {
+                "role": "assistant",
+                "tool_calls": [
+                  {
+                    "type": "function",
+                    "function": {
+                      "name": "generate_image"
+                    }
+                  }
+                ]
+              },
+              "scores": [
+                {
+                  "name": "ToolCallMatch",
+                  "score": 1
+                }
+              ],
+              "createdAt": "2025-05-08T10:51:22.868Z"
+            }
+          ],
+          "score": 1,
+          "statistics": {
+            "mean": 1,
+            "median": 1,
+            "standardDeviation": 0,
+            "confidenceInterval95": [
+              null,
+              null
+            ],
+            "min": 1,
+            "max": 1
+          },
+          "createdAt": "2025-05-08T10:51:22.868Z",
+          "comparisonToPrevious": {
+            "pValue": 1,
+            "isSignificant": false,
+            "effectSize": 0
+          }
+        },
+        {
+          "runs": [
+            {
+              "input": "Generate an image of a cat",
+              "output": {
+                "role": "assistant",
+                "content": null,
+                "tool_calls": [
+                  {
+                    "id": "call_HGHeWx62HMflUOZuRzDwg5fS",
+                    "type": "function",
+                    "function": {
+                      "name": "generate_image",
+                      "arguments": "{\"prompt\":\"A cute and fluffy cat sitting on a sunny windowsill, with green plants in the background and a soft, warm light illuminating its fur. The cat has bright green eyes and a playful expression, surrounded by a cozy home atmosphere.\"}"
+                    }
+                  }
+                ],
+                "refusal": null,
+                "annotations": []
+              },
+              "expected": {
+                "role": "assistant",
+                "tool_calls": [
+                  {
+                    "type": "function",
+                    "function": {
+                      "name": "generate_image"
+                    }
+                  }
+                ]
+              },
+              "scores": [
+                {
+                  "name": "ToolCallMatch",
+                  "score": 1
+                }
+              ],
+              "createdAt": "2025-05-08T10:53:51.599Z"
+            }
+          ],
+          "score": 1,
+          "statistics": {
+            "mean": 1,
+            "median": 1,
+            "standardDeviation": 0,
+            "confidenceInterval95": [
+              null,
+              null
+            ],
+            "min": 1,
+            "max": 1
+          },
+          "createdAt": "2025-05-08T10:53:51.599Z",
+          "comparisonToPrevious": {
+            "pValue": 1,
+            "isSignificant": false,
+            "effectSize": 0
+          }
+        },
+        {
+          "runs": [
+            {
+              "input": "Generate an image of a cat",
+              "output": {
+                "role": "assistant",
+                "content": null,
+                "tool_calls": [
+                  {
+                    "id": "call_ZDVri9jjYBk4nzY3qomRYuyU",
+                    "type": "function",
+                    "function": {
+                      "name": "generate_image",
+                      "arguments": "{\"prompt\":\"A cute, fluffy cat sitting on a sunny windowsill, with green plants in the background and a soft, warm light illuminating its fur. The cat has bright green eyes and a playful expression, surrounded by a cozy home atmosphere.\"}"
+                    }
+                  }
+                ],
+                "refusal": null,
+                "annotations": []
+              },
+              "expected": {
+                "role": "assistant",
+                "tool_calls": [
+                  {
+                    "type": "function",
+                    "function": {
+                      "name": "generate_image"
+                    }
+                  }
+                ]
+              },
+              "scores": [
+                {
+                  "name": "ToolCallMatch",
+                  "score": 1
+                }
+              ],
+              "createdAt": "2025-05-08T10:56:35.179Z"
+            }
+          ],
+          "score": 1,
+          "statistics": {
+            "mean": 1,
+            "median": 1,
+            "standardDeviation": 0,
+            "confidenceInterval95": [
+              null,
+              null
+            ],
+            "min": 1,
+            "max": 1
+          },
+          "createdAt": "2025-05-08T10:56:35.179Z",
           "comparisonToPrevious": {
             "pValue": 1,
             "isSignificant": false,
@@ -5329,6 +6133,405 @@
             "max": 1
           },
           "createdAt": "2025-05-08T10:45:37.606Z",
+          "comparisonToPrevious": {
+            "pValue": null,
+            "isSignificant": false,
+            "effectSize": null
+          }
+        },
+        {
+          "runs": [
+            {
+              "input": "Tell me a funny dad joke",
+              "output": {
+                "role": "assistant",
+                "content": null,
+                "tool_calls": [
+                  {
+                    "id": "call_DUVeLOaSamf2tEAyfIBExTEK",
+                    "type": "function",
+                    "function": {
+                      "name": "get_dad_joke",
+                      "arguments": "{}"
+                    }
+                  }
+                ],
+                "refusal": null,
+                "annotations": []
+              },
+              "expected": {
+                "role": "assistant",
+                "tool_calls": [
+                  {
+                    "type": "function",
+                    "function": {
+                      "name": "get_dad_joke"
+                    }
+                  }
+                ]
+              },
+              "scores": [
+                {
+                  "name": "ToolCallMatch",
+                  "score": 1
+                }
+              ],
+              "createdAt": "2025-05-08T10:51:22.904Z"
+            },
+            {
+              "input": "take a photo of a sun",
+              "output": {
+                "role": "assistant",
+                "content": null,
+                "tool_calls": [
+                  {
+                    "id": "call_AgAvd59x9HbwZe8sfF8iZ4jR",
+                    "type": "function",
+                    "function": {
+                      "name": "generate_image",
+                      "arguments": "{\"prompt\":\"A beautiful sunset over a calm ocean, with the sun partially hidden behind the horizon, casting warm orange and pink hues across the sky and reflecting on the water. The scene is peaceful and serene, evoking a sense of tranquility.\"}"
+                    }
+                  }
+                ],
+                "refusal": null,
+                "annotations": []
+              },
+              "expected": {
+                "role": "assistant",
+                "tool_calls": [
+                  {
+                    "type": "function",
+                    "function": {
+                      "name": "generate_image"
+                    }
+                  }
+                ]
+              },
+              "scores": [
+                {
+                  "name": "ToolCallMatch",
+                  "score": 1
+                }
+              ],
+              "createdAt": "2025-05-08T10:51:22.904Z"
+            },
+            {
+              "input": "tell me something cool from reddit",
+              "output": {
+                "role": "assistant",
+                "content": null,
+                "tool_calls": [
+                  {
+                    "id": "call_9okyHqU0oJ5jCPpJOCiouB62",
+                    "type": "function",
+                    "function": {
+                      "name": "get_reddit_post",
+                      "arguments": "{}"
+                    }
+                  }
+                ],
+                "refusal": null,
+                "annotations": []
+              },
+              "expected": {
+                "role": "assistant",
+                "tool_calls": [
+                  {
+                    "type": "function",
+                    "function": {
+                      "name": "get_reddit_post"
+                    }
+                  }
+                ]
+              },
+              "scores": [
+                {
+                  "name": "ToolCallMatch",
+                  "score": 1
+                }
+              ],
+              "createdAt": "2025-05-08T10:51:22.904Z"
+            }
+          ],
+          "score": 1,
+          "statistics": {
+            "mean": 1,
+            "median": 1,
+            "standardDeviation": 0,
+            "confidenceInterval95": [
+              null,
+              null
+            ],
+            "min": 1,
+            "max": 1
+          },
+          "createdAt": "2025-05-08T10:51:22.904Z",
+          "comparisonToPrevious": {
+            "pValue": null,
+            "isSignificant": false,
+            "effectSize": null
+          }
+        },
+        {
+          "runs": [
+            {
+              "input": "Tell me a funny dad joke",
+              "output": {
+                "role": "assistant",
+                "content": null,
+                "tool_calls": [
+                  {
+                    "id": "call_G8j6XPcS4X611OUr2zbqvRlU",
+                    "type": "function",
+                    "function": {
+                      "name": "get_dad_joke",
+                      "arguments": "{}"
+                    }
+                  }
+                ],
+                "refusal": null,
+                "annotations": []
+              },
+              "expected": {
+                "role": "assistant",
+                "tool_calls": [
+                  {
+                    "type": "function",
+                    "function": {
+                      "name": "get_dad_joke"
+                    }
+                  }
+                ]
+              },
+              "scores": [
+                {
+                  "name": "ToolCallMatch",
+                  "score": 1
+                }
+              ],
+              "createdAt": "2025-05-08T10:53:51.771Z"
+            },
+            {
+              "input": "take a photo of a sun",
+              "output": {
+                "role": "assistant",
+                "content": null,
+                "tool_calls": [
+                  {
+                    "id": "call_66ZgJessJkRycdJtKga6i3yw",
+                    "type": "function",
+                    "function": {
+                      "name": "generate_image",
+                      "arguments": "{\"prompt\":\"A beautiful sunset over a calm ocean, with the sun dipping below the horizon, casting vibrant orange and pink hues across the sky and reflecting on the water. The scene is peaceful and serene, evoking a sense of tranquility.\"}"
+                    }
+                  }
+                ],
+                "refusal": null,
+                "annotations": []
+              },
+              "expected": {
+                "role": "assistant",
+                "tool_calls": [
+                  {
+                    "type": "function",
+                    "function": {
+                      "name": "generate_image"
+                    }
+                  }
+                ]
+              },
+              "scores": [
+                {
+                  "name": "ToolCallMatch",
+                  "score": 1
+                }
+              ],
+              "createdAt": "2025-05-08T10:53:51.771Z"
+            },
+            {
+              "input": "tell me something cool from reddit",
+              "output": {
+                "role": "assistant",
+                "content": null,
+                "tool_calls": [
+                  {
+                    "id": "call_QkNu2K915cnZrcB8ODTASppW",
+                    "type": "function",
+                    "function": {
+                      "name": "get_reddit_post",
+                      "arguments": "{}"
+                    }
+                  }
+                ],
+                "refusal": null,
+                "annotations": []
+              },
+              "expected": {
+                "role": "assistant",
+                "tool_calls": [
+                  {
+                    "type": "function",
+                    "function": {
+                      "name": "get_reddit_post"
+                    }
+                  }
+                ]
+              },
+              "scores": [
+                {
+                  "name": "ToolCallMatch",
+                  "score": 1
+                }
+              ],
+              "createdAt": "2025-05-08T10:53:51.771Z"
+            }
+          ],
+          "score": 1,
+          "statistics": {
+            "mean": 1,
+            "median": 1,
+            "standardDeviation": 0,
+            "confidenceInterval95": [
+              null,
+              null
+            ],
+            "min": 1,
+            "max": 1
+          },
+          "createdAt": "2025-05-08T10:53:51.772Z",
+          "comparisonToPrevious": {
+            "pValue": null,
+            "isSignificant": false,
+            "effectSize": null
+          }
+        },
+        {
+          "runs": [
+            {
+              "input": "Tell me a funny dad joke",
+              "output": {
+                "role": "assistant",
+                "content": null,
+                "tool_calls": [
+                  {
+                    "id": "call_XyeluB85Rcoa5ObS4xMPRea5",
+                    "type": "function",
+                    "function": {
+                      "name": "get_dad_joke",
+                      "arguments": "{}"
+                    }
+                  }
+                ],
+                "refusal": null,
+                "annotations": []
+              },
+              "expected": {
+                "role": "assistant",
+                "tool_calls": [
+                  {
+                    "type": "function",
+                    "function": {
+                      "name": "get_dad_joke"
+                    }
+                  }
+                ]
+              },
+              "scores": [
+                {
+                  "name": "ToolCallMatch",
+                  "score": 1
+                }
+              ],
+              "createdAt": "2025-05-08T10:56:35.854Z"
+            },
+            {
+              "input": "take a photo of a sun",
+              "output": {
+                "role": "assistant",
+                "content": null,
+                "tool_calls": [
+                  {
+                    "id": "call_FKl2uN5Z6aULadcMOazHgQ7X",
+                    "type": "function",
+                    "function": {
+                      "name": "generate_image",
+                      "arguments": "{\"prompt\":\"A beautiful sunset over a calm ocean, with the sun partially hidden behind the horizon, casting vibrant orange and pink hues across the sky and reflecting on the water. The scene is peaceful and serene, evoking a sense of tranquility.\"}"
+                    }
+                  }
+                ],
+                "refusal": null,
+                "annotations": []
+              },
+              "expected": {
+                "role": "assistant",
+                "tool_calls": [
+                  {
+                    "type": "function",
+                    "function": {
+                      "name": "generate_image"
+                    }
+                  }
+                ]
+              },
+              "scores": [
+                {
+                  "name": "ToolCallMatch",
+                  "score": 1
+                }
+              ],
+              "createdAt": "2025-05-08T10:56:35.854Z"
+            },
+            {
+              "input": "tell me something cool from reddit",
+              "output": {
+                "role": "assistant",
+                "content": null,
+                "tool_calls": [
+                  {
+                    "id": "call_Whf3UDPXIGJeHK9KWbMu3l7Z",
+                    "type": "function",
+                    "function": {
+                      "name": "get_reddit_post",
+                      "arguments": "{}"
+                    }
+                  }
+                ],
+                "refusal": null,
+                "annotations": []
+              },
+              "expected": {
+                "role": "assistant",
+                "tool_calls": [
+                  {
+                    "type": "function",
+                    "function": {
+                      "name": "get_reddit_post"
+                    }
+                  }
+                ]
+              },
+              "scores": [
+                {
+                  "name": "ToolCallMatch",
+                  "score": 1
+                }
+              ],
+              "createdAt": "2025-05-08T10:56:35.854Z"
+            }
+          ],
+          "score": 1,
+          "statistics": {
+            "mean": 1,
+            "median": 1,
+            "standardDeviation": 0,
+            "confidenceInterval95": [
+              null,
+              null
+            ],
+            "min": 1,
+            "max": 1
+          },
+          "createdAt": "2025-05-08T10:56:35.854Z",
           "comparisonToPrevious": {
             "pValue": null,
             "isSignificant": false,

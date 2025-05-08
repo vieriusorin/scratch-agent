@@ -1,6 +1,7 @@
 import type { Scorer } from "autoevals"
 import chalk from "chalk"
-import type { Run } from "../types"
+import type { Run } from "../../types"
+import { configManager } from "../config/ConfigManager"
 
 /**
  * Processes a single evaluation item with retry logic
@@ -18,7 +19,7 @@ export const processEvalItem = async <T = any>({
     reference,
     task,
     scorers,
-    maxRetries = 3,
+    maxRetries = configManager.get('maxRetries', 3),
   }: {
     input: any
     expected?: T
@@ -27,8 +28,12 @@ export const processEvalItem = async <T = any>({
     scorers: Scorer<T, any>[]
     maxRetries?: number
   }): Promise<Run> => {
-    let attempt = 0
-    let lastError: Error | null = null
+    let attempt = 0;
+    let lastError: Error | null = null;
+
+    const retryBackoffMultiplier = configManager.get('retryBackoffMultiplier', 2);
+    const maxRetryBackoffMs = configManager.get('maxRetryBackoffMs', 30000);
+    const initialRetryDelayMs = configManager.get('initialRetryDelayMs', 1000);
   
     while (attempt < maxRetries) {
       try {
@@ -78,14 +83,18 @@ export const processEvalItem = async <T = any>({
         attempt++
         
         if (attempt < maxRetries) {
-          // Exponential backoff: 1s, 2s, 4s, 8s, etc.
-          const backoffTime = Math.min(1000 * Math.pow(2, attempt - 1), 30000)
+          // Calculate backoff time using configuration values
+          const backoffTime = Math.min(
+            initialRetryDelayMs * Math.pow(retryBackoffMultiplier, attempt - 1), 
+            maxRetryBackoffMs
+          );
+
           console.warn(
             chalk.yellow(
               `Attempt ${attempt}/${maxRetries} failed for input: ${JSON.stringify(input).substring(0, 50)}... - Retrying in ${backoffTime / 1000}s`
             )
-          )
-          await new Promise(resolve => setTimeout(resolve, backoffTime))
+          );
+          await new Promise(resolve => setTimeout(resolve, backoffTime));
         }
       }
     }

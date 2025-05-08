@@ -1,10 +1,11 @@
 import 'dotenv/config'
 import type { Scorer } from 'autoevals'
 import chalk from 'chalk'
-import { calculateAvgScore } from '../utils/calculateAvgScore'
-import { loadExperiment } from '../utils/loadExperiment'
-import { saveSet } from '../utils/saveSet'
-import { processBatch } from '../utils/processBatch'
+import { calculateAvgScore } from '../utils/evals/calculateAvgScore'
+import { loadExperiment } from '../utils/evals/loadExperiment'
+import { saveSet } from '../utils/evals/saveSet'
+import { processBatch } from '../utils/evals/processBatch'
+import { configManager } from '../utils/config/ConfigManager'
 
 /**
  * 
@@ -37,10 +38,17 @@ export const runEval = async <T = any>(
     }
   }
 ) => {
-  console.log(chalk.blue(`Starting experiment: ${experiment}`))
-  console.log(chalk.blue(`Dataset size: ${data.length} items`))
-  console.log(chalk.blue(`Concurrency: ${options.concurrency || 5}`))
-  console.log(chalk.blue(`Max retries: ${options.maxRetries || 3}`))
+  // Get configuration values with fallbacks to provided options
+  const concurrency = options.concurrency || 
+    configManager.get('concurrency', 5);
+  
+  const maxRetries = options.maxRetries || 
+    configManager.get('maxRetries', 3);
+
+  console.log(chalk.blue(`Starting experiment: ${experiment}`));
+  console.log(chalk.blue(`Dataset size: ${data.length} items`));
+  console.log(chalk.blue(`Concurrency: ${concurrency}`));
+  console.log(chalk.blue(`Max retries: ${maxRetries}`));
   
   const startTime = Date.now()
   
@@ -49,8 +57,8 @@ export const runEval = async <T = any>(
     task,
     scorers,
     {
-      concurrency: options.concurrency || 5,
-      maxRetries: options.maxRetries || 3,
+      concurrency,
+      maxRetries,
     }
   )
   

@@ -1,5 +1,7 @@
 
 import fs from 'fs/promises';
+import type { EvalConfig } from '../../types/config';
+
 /**
  * ConfigManager is a class that manages the configuration for the autoevals library.   
  * It is used to get and set the configuration for the library.
@@ -17,7 +19,7 @@ import fs from 'fs/promises';
  */
 export class ConfigManager {
   // Default configuration values
-  private config: Record<string, any> = {
+  private config: EvalConfig = {
     // Evaluation defaults
     concurrency: 5,
     maxRetries: 3,

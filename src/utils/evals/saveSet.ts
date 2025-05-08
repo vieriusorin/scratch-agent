@@ -1,8 +1,8 @@
-import type { Run } from "../types"
-import { getDb } from "./db/getDb"
-import { calculateAvgScore } from "./evals/calculateAvgScore"
-import { compareRuns } from "./evals/compareRuns"
-import { calculateStatistics } from "./evals/calculateStatistics"
+import type { Run } from "../../types"
+import { getDb } from "../db/getDb"
+import { calculateAvgScore } from "./calculateAvgScore"
+import { compareRuns } from "./compareRuns"
+import { calculateStatistics } from "./calculateStatistics"
 
 export const saveSet = async (
     experimentName: string,

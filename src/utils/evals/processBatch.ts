@@ -1,7 +1,8 @@
 import type { Scorer } from "autoevals";
-import type { Run } from "../types";
+import type { Run } from "../../types";
 import { processEvalItem } from "./processEvalItem";
 import chalk from "chalk";
+import { configManager } from "../config/ConfigManager";
 
 /**
  * Processes a batch of evaluation items with controlled concurrency
@@ -12,11 +13,17 @@ import chalk from "chalk";
  * @returns The results of the processed items
  */
 export const processBatch = async <T = any>(
-    items: { input: any; expected?: T; reference?: string | string[] }[],
-    task: (input: any) => Promise<T>,
-    scorers: Scorer<T, any>[],
-    { concurrency = 5, maxRetries = 3 }: { concurrency?: number; maxRetries?: number }
-  ): Promise<Run[]> => {
+  items: { input: any; expected?: T; reference?: string | string[] }[],
+  task: (input: any) => Promise<T>,
+  scorers: Scorer<T, any>[],
+  { 
+    concurrency = configManager.get('concurrency', 5), 
+    maxRetries = configManager.get('maxRetries', 3) 
+  }: { 
+    concurrency?: number; 
+    maxRetries?: number 
+  }
+): Promise<Run[]> => {
     const results: Run[] = []
     const queue = [...items]
     
@@ -39,7 +46,22 @@ export const processBatch = async <T = any>(
         chalk.blue(
           `Progress: ${results.length}/${items.length} (${Math.round((results.length / items.length) * 100)}%)`
         )
-      )
+      );
+
+      // Get progress reporting interval from config
+      const progressInterval = configManager.get('progressInterval', 5);
+      let lastReportedProgress = 0;
+
+      // Report progress based on configured interval
+      const currentProgress = Math.round((results.length / items.length) * 100);
+      if (currentProgress >= lastReportedProgress + progressInterval) {
+        console.log(
+          chalk.blue(
+            `Progress: ${results.length}/${items.length} (${currentProgress}%)`
+          )
+        );
+        lastReportedProgress = currentProgress;
+      }
     }
     
     return results

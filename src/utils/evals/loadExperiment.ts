@@ -1,5 +1,5 @@
-import type { Experiment } from "../types"
-import { getDb } from "./getDb"
+import type { Experiment } from "../../types"
+import { getDb } from "../db/getDb"
 
 /**
  * Loads an experiment from the database

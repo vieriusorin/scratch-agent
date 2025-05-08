@@ -1,5 +1,5 @@
 import type { Score } from "autoevals"
-import type { Run } from "../types"
+import type { Run } from "../../types"
 
 /**
  * Calculate the average score for a run (across all its scorers)

@@ -1,5 +1,5 @@
-import type { Run, StatisticalMetrics } from "../types";
-import { calculateRunScore } from "./evals/calculateRunScore";
+import type { Run, StatisticalMetrics } from "../../types";
+import { calculateRunScore } from "./calculateRunScore";
 
 import * as stats from 'simple-statistics'
 

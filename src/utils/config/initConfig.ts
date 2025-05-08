@@ -9,7 +9,7 @@ import { configManager } from './ConfigManager';
  * @param environment - Current environment (development, production, etc.)
  */
 export async function initializeConfig(
-  configDir: string = 'config',
+  configDir: string = 'src/config',
   environment: string = process.env.NODE_ENV || 'development'
 ): Promise<void> {
   try {

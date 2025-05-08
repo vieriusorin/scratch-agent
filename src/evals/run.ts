@@ -4,6 +4,7 @@ import { fileURLToPath, pathToFileURL } from 'url'
 import { dirname } from 'path'
 import { readdir, access } from 'fs/promises'
 import { constants } from 'fs'
+import { initializeConfig } from '../utils/config/initConfig'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
@@ -37,11 +38,17 @@ const safeImport = async (path: string) => {
   }
 }
 
+/**
+ * Main function to run the evals
+ * @returns void
+ */
 const main = async () => {
+  // Initialize configuration before doing anything else
+  await initializeConfig();
   const evalName = process.argv[2]
   
   // Using resolve for more robust path handling
-  const experimentsDir = resolve(__dirname, 'experiments')
+  const experimentsDir = resolve(__dirname, 'experiments');
 
   try {
     if (evalName) {

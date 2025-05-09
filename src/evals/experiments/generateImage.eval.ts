@@ -14,11 +14,9 @@ const createToolCallMessage = (toolName: string) => ({
 })
 
 /**
- * INFO: We run the eval for the reddit tool.
- * We use the runEval function to run the eval.
- * We use the runLLM function to run the model.
- * We use the createToolCallMessage function to create the tool call message.
- * We use the ToolCallMatch scorer to score the output.
+ * @description Run the eval for the generateImage tool
+ * @param input - The input to the tool
+ * @returns The output of the tool
  */
 runEval('generateImage', {
     task: (input) =>

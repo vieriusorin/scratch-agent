@@ -1,10 +1,11 @@
 import type OpenAI from 'openai';
 import { getGenerateImageTool, generateImageToolDefinition } from './tools/generateImage';
 import { getRedditPosts, redditToolDefinition } from './tools/reddit';
-import { getDadJoke, dadJokeTookDefinition } from './tools/fileJoke';
+import { getDadJoke, dadJokeToolDefinition } from './tools/fileJoke';
 import { getMovieSearchTool, movieSearchToolDefinition } from './tools/movieSearch';
 import { createCalendarEvent, calendarEventToolDefinition } from './tools/createCalendarEvent';
 import { getCurrentDate, getCurrentDateToolDefinition } from './tools/getCurrentDate';
+import { logErrorToService } from './utils/errorLogging';
 
 /**
  * Run the tool
@@ -29,7 +30,7 @@ export const runTool = async (
       return getGenerateImageTool(input)
     case redditToolDefinition.name:
       return getRedditPosts(input)
-    case dadJokeTookDefinition.name:
+    case dadJokeToolDefinition.name:
       return getDadJoke(input)
     case movieSearchToolDefinition.name:
       return getMovieSearchTool(input)
@@ -37,6 +38,31 @@ export const runTool = async (
       return createCalendarEvent(input)
     default:
       // We tell AI to stop running this tool
-      return `Never run this tool ${toolCall.function.name} again. or else!`
+      return handleToolError(new Error(`Tool ${toolCall.function.name} not found`), toolCall.function.name)
   }
 }
+
+/**
+ * @description Handle the tool error
+ * @param error - The error
+ * @param toolName - The tool name
+ * @returns The error
+ */
+export const handleToolError = (error: any, toolName: string) => {
+  console.error(`Error in tool ${toolName}:`, error);
+  
+  // Log the error to the service
+  logErrorToService({
+    toolName,
+    error: error.message,
+    stack: error.stack,
+    timestamp: new Date().toISOString()
+  });
+  
+  // Return a user-friendly error
+  return {
+    success: false,
+    error: 'There was an issue with this tool. Our team has been notified.',
+    details: process.env.NODE_ENV === 'development' ? error.message : undefined
+  };
+};

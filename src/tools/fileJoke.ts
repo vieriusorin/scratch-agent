@@ -12,7 +12,7 @@ import fetch from 'node-fetch';
  * 
  * @description Naming  and description of the tool is important, it will be used to match the expected tool call.
  */
-export const dadJokeTookDefinition = {
+export const dadJokeToolDefinition = {
     name: 'get_dad_joke',
     parameters: z.object({}),
     description: 'returns a dad joke',
@@ -21,7 +21,7 @@ export const dadJokeTookDefinition = {
     }
 }
 
-type Args = z.infer<typeof dadJokeTookDefinition.parameters> 
+type Args = z.infer<typeof dadJokeToolDefinition.parameters> 
 
 export const getDadJoke: ToolFn<Args, string> = async ({ toolArgs }) => {
     const response = await fetch('https://icanhazdadjoke.com/', {

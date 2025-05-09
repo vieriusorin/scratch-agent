@@ -55,3 +55,17 @@ export type Experiment = {
 export type Data = {
   experiments: Experiment[]
 }
+
+export type FeedbackEntry = {
+  id: string;
+  conversationId: string;
+  messageId: string;
+  rating: number; // e.g., 1-5 scale
+  feedback: string; // optional text feedback
+  category?: string; // optional category (e.g., 'tool_usage', 'response_quality')
+  createdAt: string;
+};
+
+export type FeedbackData = {
+  feedback: FeedbackEntry[];
+};

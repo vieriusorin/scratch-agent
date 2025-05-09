@@ -6,6 +6,7 @@ import { loadExperiment } from '../utils/evals/loadExperiment'
 import { saveSet } from '../utils/evals/saveSet'
 import { processBatch } from '../utils/evals/processBatch'
 import { configManager } from '../utils/config/ConfigManager'
+import type { EvalResult } from './types'
 
 /**
  * 
@@ -95,3 +96,26 @@ export const runEval = async <T = any>(
 
   return results
 }
+
+// Add structured test reporting
+export const generateTestReport = (results: EvalResult[]) => {
+  const summary = {
+    total: results.length,
+    passed: results.filter(r => r.success).length,
+    failed: results.filter(r => !r.success).length,
+    metrics: {
+      averageResponseTime: results.reduce((acc, r) => acc + (r.responseTime || 0), 0) / results.length
+    }
+  };
+  
+  return {
+    summary,
+    details: results,
+    timestamp: new Date().toISOString()
+  };
+};
+
+// Add ability to run specific test suites
+export const runTestSuite = async (suiteName: string) => {
+  // ... implementation to run only tests from a specific suite
+};

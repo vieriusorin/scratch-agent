@@ -771,6 +771,92 @@
             "isSignificant": true,
             "effectSize": 0
           }
+        },
+        {
+          "runs": [
+            {
+              "input": "tell me something cool from reddit",
+              "output": {
+                "role": "assistant",
+                "content": null,
+                "tool_calls": [
+                  {
+                    "id": "call_RQxBgXUMwlSrzZrPKsAdD1Qy",
+                    "type": "function",
+                    "function": {
+                      "name": "get_reddit_post",
+                      "arguments": "{\"subreddit\":\"interestingasfuck\"}"
+                    }
+                  }
+                ],
+                "refusal": null,
+                "annotations": []
+              },
+              "expected": {
+                "role": "assistant",
+                "tool_calls": [
+                  {
+                    "type": "function",
+                    "function": {
+                      "name": "get_reddit_post"
+                    }
+                  }
+                ]
+              },
+              "scores": [
+                {
+                  "name": "ToolCallMatch",
+                  "score": 1
+                }
+              ],
+              "createdAt": "2025-05-09T11:37:24.436Z"
+            },
+            {
+              "input": "hi",
+              "output": {
+                "role": "assistant",
+                "content": "Hello, John! How can I assist you today?",
+                "refusal": null,
+                "annotations": []
+              },
+              "expected": {
+                "role": "assistant",
+                "tool_calls": [
+                  {
+                    "type": "function",
+                    "function": {
+                      "name": "get_reddit_post"
+                    }
+                  }
+                ]
+              },
+              "scores": [
+                {
+                  "name": "ToolCallMatch",
+                  "score": 0
+                }
+              ],
+              "createdAt": "2025-05-09T11:37:24.436Z"
+            }
+          ],
+          "score": 0.5,
+          "statistics": {
+            "mean": 0.5,
+            "median": 0.5,
+            "standardDeviation": 0.5,
+            "confidenceInterval95": [
+              null,
+              null
+            ],
+            "min": 0,
+            "max": 1
+          },
+          "createdAt": "2025-05-09T11:37:24.437Z",
+          "comparisonToPrevious": {
+            "pValue": 0,
+            "isSignificant": true,
+            "effectSize": 0
+          }
         }
       ]
     },
@@ -3198,6 +3284,139 @@
             "isSignificant": false,
             "effectSize": null
           }
+        },
+        {
+          "runs": [
+            {
+              "input": "Tell me a funny dad joke",
+              "output": {
+                "role": "assistant",
+                "content": null,
+                "tool_calls": [
+                  {
+                    "id": "call_rVsVrlMzxrlQtGVRcjWtgeEX",
+                    "type": "function",
+                    "function": {
+                      "name": "get_dad_joke",
+                      "arguments": "{}"
+                    }
+                  }
+                ],
+                "refusal": null,
+                "annotations": []
+              },
+              "expected": {
+                "role": "assistant",
+                "tool_calls": [
+                  {
+                    "type": "function",
+                    "function": {
+                      "name": "get_dad_joke"
+                    }
+                  }
+                ]
+              },
+              "scores": [
+                {
+                  "name": "ToolCallMatch",
+                  "score": 1
+                }
+              ],
+              "createdAt": "2025-05-09T11:37:26.011Z"
+            },
+            {
+              "input": "take a photo of a sun",
+              "output": {
+                "role": "assistant",
+                "content": null,
+                "tool_calls": [
+                  {
+                    "id": "call_DtFHRRKQPxgg8xctWgGJdN6x",
+                    "type": "function",
+                    "function": {
+                      "name": "generate_image",
+                      "arguments": "{\"prompt\":\"A beautiful sunset over a calm ocean, with vibrant orange and pink hues in the sky, reflecting on the water. The sun is partially hidden on the horizon, casting a warm glow across the scene.\"}"
+                    }
+                  }
+                ],
+                "refusal": null,
+                "annotations": []
+              },
+              "expected": {
+                "role": "assistant",
+                "tool_calls": [
+                  {
+                    "type": "function",
+                    "function": {
+                      "name": "generate_image"
+                    }
+                  }
+                ]
+              },
+              "scores": [
+                {
+                  "name": "ToolCallMatch",
+                  "score": 1
+                }
+              ],
+              "createdAt": "2025-05-09T11:37:26.011Z"
+            },
+            {
+              "input": "tell me something cool from reddit",
+              "output": {
+                "role": "assistant",
+                "content": null,
+                "tool_calls": [
+                  {
+                    "id": "call_MnoXl8PW5Aer3qRc1fhAtv5v",
+                    "type": "function",
+                    "function": {
+                      "name": "get_reddit_post",
+                      "arguments": "{\"subreddit\":\"worldnews\"}"
+                    }
+                  }
+                ],
+                "refusal": null,
+                "annotations": []
+              },
+              "expected": {
+                "role": "assistant",
+                "tool_calls": [
+                  {
+                    "type": "function",
+                    "function": {
+                      "name": "get_reddit_post"
+                    }
+                  }
+                ]
+              },
+              "scores": [
+                {
+                  "name": "ToolCallMatch",
+                  "score": 1
+                }
+              ],
+              "createdAt": "2025-05-09T11:37:26.011Z"
+            }
+          ],
+          "score": 1,
+          "statistics": {
+            "mean": 1,
+            "median": 1,
+            "standardDeviation": 0,
+            "confidenceInterval95": [
+              null,
+              null
+            ],
+            "min": 1,
+            "max": 1
+          },
+          "createdAt": "2025-05-09T11:37:26.011Z",
+          "comparisonToPrevious": {
+            "pValue": null,
+            "isSignificant": false,
+            "effectSize": null
+          }
         }
       ]
     },
@@ -3783,6 +4002,65 @@
             "max": 1
           },
           "createdAt": "2025-05-08T13:52:44.988Z",
+          "comparisonToPrevious": {
+            "pValue": 1,
+            "isSignificant": false,
+            "effectSize": 0
+          }
+        },
+        {
+          "runs": [
+            {
+              "input": "Generate an image of a cat",
+              "output": {
+                "role": "assistant",
+                "content": null,
+                "tool_calls": [
+                  {
+                    "id": "call_FNLRnC5yTdUDtwDuUmUHwDS7",
+                    "type": "function",
+                    "function": {
+                      "name": "generate_image",
+                      "arguments": "{\"prompt\":\"A cute, fluffy cat sitting on a windowsill, looking outside at a sunny garden. The cat has bright green eyes and a soft, orange tabby coat. Sunlight is streaming in, casting a warm glow on the cat's fur.\"}"
+                    }
+                  }
+                ],
+                "refusal": null,
+                "annotations": []
+              },
+              "expected": {
+                "role": "assistant",
+                "tool_calls": [
+                  {
+                    "type": "function",
+                    "function": {
+                      "name": "generate_image"
+                    }
+                  }
+                ]
+              },
+              "scores": [
+                {
+                  "name": "ToolCallMatch",
+                  "score": 1
+                }
+              ],
+              "createdAt": "2025-05-09T11:37:26.584Z"
+            }
+          ],
+          "score": 1,
+          "statistics": {
+            "mean": 1,
+            "median": 1,
+            "standardDeviation": 0,
+            "confidenceInterval95": [
+              null,
+              null
+            ],
+            "min": 1,
+            "max": 1
+          },
+          "createdAt": "2025-05-09T11:37:26.584Z",
           "comparisonToPrevious": {
             "pValue": 1,
             "isSignificant": false,
@@ -4376,6 +4654,139 @@
             "max": 1
           },
           "createdAt": "2025-05-08T13:52:45.670Z",
+          "comparisonToPrevious": {
+            "pValue": null,
+            "isSignificant": false,
+            "effectSize": null
+          }
+        },
+        {
+          "runs": [
+            {
+              "input": "Alice and Bob are going to a science fair on Friday",
+              "output": {
+                "role": "assistant",
+                "content": null,
+                "tool_calls": [
+                  {
+                    "id": "call_VGCdl4hGAcG8M2WoKvQALO70",
+                    "type": "function",
+                    "function": {
+                      "name": "calendar_event",
+                      "arguments": "{\"event\":\"Science Fair\",\"date\":\"2025-05-09\",\"participants\":[\"Alice\",\"Bob\"],\"time\":\"all-day\",\"timeZone\":\"UTC\",\"currentDate\":\"2025-05-09\"}"
+                    }
+                  }
+                ],
+                "refusal": null,
+                "annotations": []
+              },
+              "expected": {
+                "role": "assistant",
+                "tool_calls": [
+                  {
+                    "type": "function",
+                    "function": {
+                      "name": "calendar_event"
+                    }
+                  }
+                ]
+              },
+              "scores": [
+                {
+                  "name": "ToolCallMatch",
+                  "score": 1
+                }
+              ],
+              "createdAt": "2025-05-09T11:37:27.077Z"
+            },
+            {
+              "input": "Jane and Joe want to go to a festival this Weekend!",
+              "output": {
+                "role": "assistant",
+                "content": null,
+                "tool_calls": [
+                  {
+                    "id": "call_LUgMqDChJRqUqfEOqOUbrAnE",
+                    "type": "function",
+                    "function": {
+                      "name": "calendar_event",
+                      "arguments": "{\"event\":\"Festival\",\"date\":\"2025-05-10\",\"participants\":[\"Jane\",\"Joe\"],\"time\":\"all-day\",\"timeZone\":\"UTC\",\"currentDate\":\"2025-05-09\"}"
+                    }
+                  }
+                ],
+                "refusal": null,
+                "annotations": []
+              },
+              "expected": {
+                "role": "assistant",
+                "tool_calls": [
+                  {
+                    "type": "function",
+                    "function": {
+                      "name": "calendar_event"
+                    }
+                  }
+                ]
+              },
+              "scores": [
+                {
+                  "name": "ToolCallMatch",
+                  "score": 1
+                }
+              ],
+              "createdAt": "2025-05-09T11:37:27.077Z"
+            },
+            {
+              "input": "Jane and Joe want to go to a festival next Weekend!",
+              "output": {
+                "role": "assistant",
+                "content": null,
+                "tool_calls": [
+                  {
+                    "id": "call_CZ1HjmlsNUu0wi13LoNXp0aD",
+                    "type": "function",
+                    "function": {
+                      "name": "calendar_event",
+                      "arguments": "{\"event\":\"Festival\",\"date\":\"2025-05-17\",\"participants\":[\"Jane\",\"Joe\"],\"time\":\"all-day\",\"timeZone\":\"UTC\",\"currentDate\":\"2025-05-09\"}"
+                    }
+                  }
+                ],
+                "refusal": null,
+                "annotations": []
+              },
+              "expected": {
+                "role": "assistant",
+                "tool_calls": [
+                  {
+                    "type": "function",
+                    "function": {
+                      "name": "calendar_event"
+                    }
+                  }
+                ]
+              },
+              "scores": [
+                {
+                  "name": "ToolCallMatch",
+                  "score": 1
+                }
+              ],
+              "createdAt": "2025-05-09T11:37:27.077Z"
+            }
+          ],
+          "score": 1,
+          "statistics": {
+            "mean": 1,
+            "median": 1,
+            "standardDeviation": 0,
+            "confidenceInterval95": [
+              null,
+              null
+            ],
+            "min": 1,
+            "max": 1
+          },
+          "createdAt": "2025-05-09T11:37:27.077Z",
           "comparisonToPrevious": {
             "pValue": null,
             "isSignificant": false,

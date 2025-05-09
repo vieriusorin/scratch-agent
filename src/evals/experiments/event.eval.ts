@@ -13,7 +13,11 @@ const createToolCallMessage = (toolName: string) => ({
     ],
 })
 
-
+/**
+ * @description Run the eval for the create_event tool
+ * @param input - The input to the tool
+ * @returns The output of the tool
+ */
 runEval('create_event', {
     task: (input) =>
         runLLM({

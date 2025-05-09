@@ -28,7 +28,7 @@ type Args = z.infer<typeof movieSearchToolDefinition.parameters>;
  * @param toolArgs - The tool arguments
  * @returns The results of the movie search
  */
-export const movieSearchTool: ToolFn<Args> = async ({ userMessage, toolArgs }) => {
+export const getMovieSearchTool: ToolFn<Args> = async ({ userMessage, toolArgs }) => {
     let results;
     try {
         results = await queryMovies({query: toolArgs.query});

@@ -1,0 +1,17 @@
+{
+  "event": "Party at Dilan",
+  "date": "2025-05-12",
+  "time": "all-day",
+  "timeZone": "UTC",
+  "formattedDateTime": "May 9, 2025 at 7:06 AM Coordinated Universal Time",
+  "participants": [
+    "Alice",
+    "Bob"
+  ],
+  "createdAt": "2025-05-09",
+  "metadata": {
+    "source": "calendar_event_tool",
+    "userMessage": "approve",
+    "creationTimestamp": 1746774385418
+  }
+}

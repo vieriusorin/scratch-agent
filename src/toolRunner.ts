@@ -2,7 +2,7 @@ import type OpenAI from 'openai';
 import { getGenerateImageTool, generateImageToolDefinition } from './tools/generateImage';
 import { getRedditPosts, redditToolDefinition } from './tools/reddit';
 import { getDadJoke, dadJokeTookDefinition } from './tools/fileJoke';
-import { movieSearchTool, movieSearchToolDefinition } from './tools/movieSearch';
+import { getMovieSearchTool, movieSearchToolDefinition } from './tools/movieSearch';
 import { createCalendarEvent, calendarEventToolDefinition } from './tools/createCalendarEvent';
 import { getCurrentDate, getCurrentDateToolDefinition } from './tools/getCurrentDate';
 
@@ -32,7 +32,7 @@ export const runTool = async (
     case dadJokeTookDefinition.name:
       return getDadJoke(input)
     case movieSearchToolDefinition.name:
-      return movieSearchTool(input)
+      return getMovieSearchTool(input)
     case calendarEventToolDefinition.name:
       return createCalendarEvent(input)
     default:

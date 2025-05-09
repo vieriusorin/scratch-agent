@@ -117,7 +117,7 @@ export const runAgent = async ({
         // Stop the loader
         loader.stop();
 
-        console.log('To continue, please approve the reddit post: (APROVE/DENY) ');
+        console.log('To continue, please approve the reddit post: (APPROVE/DENY) ');
         // Return the history
         return getMessages();
       }

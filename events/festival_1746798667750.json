@@ -1,0 +1,17 @@
+{
+  "event": "Festival",
+  "date": "2025-05-16",
+  "time": "16:00-23:00",
+  "timeZone": "America/New_York",
+  "formattedDateTime": "May 16, 2025 at 10:00 AM Eastern Daylight Time",
+  "participants": [
+    "Jimmy",
+    "Jane"
+  ],
+  "createdAt": "2025-05-09",
+  "metadata": {
+    "source": "calendar_event_tool",
+    "userMessage": "Jimmy and Jane want to go to a festival next Friday, at 4:00 PM until 11:00 PM",
+    "creationTimestamp": 1746798667750
+  }
+}

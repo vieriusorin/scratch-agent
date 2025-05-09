@@ -4,6 +4,7 @@ import { dadJokeToolDefinition } from "./fileJoke";
 import { movieSearchToolDefinition } from "./movieSearch";
 import { calendarEventToolDefinition } from "./createCalendarEvent";
 import { getCurrentDateToolDefinition } from "./getCurrentDate";
+import { promptInjectionDetectorDefinition } from "./promptInjectionDetector";
 
 export const tools = [
     generateImageToolDefinition,
@@ -11,6 +12,7 @@ export const tools = [
     dadJokeToolDefinition,
     movieSearchToolDefinition,
     calendarEventToolDefinition,
-    getCurrentDateToolDefinition
+    getCurrentDateToolDefinition,
+    promptInjectionDetectorDefinition
 ];
 

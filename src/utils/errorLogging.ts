@@ -38,3 +38,39 @@ export const logErrorToService = async (errorData: {
   
   return true;
 }; 
+
+export const logSecurityEvent = async (eventData: {
+  eventType: 'pattern_injection' | 'context_shift' | 'repeated_attempts' | 'suspicious_activity';
+  userMessage: string;
+  confidence?: number;
+  reasoning?: string;
+  timestamp?: string;
+}) => {
+  // Add timestamp if not provided
+  if (!eventData.timestamp) {
+    eventData.timestamp = new Date().toISOString();
+  }
+  
+  // Log to console for development
+  console.error('Security Event:', eventData);
+  
+  // In a production environment, send to security monitoring system
+  if (process.env.NODE_ENV === 'production') {
+    try {
+      // Example: Send to a security monitoring endpoint
+      // const response = await fetch('/api/security/events', {
+      //   method: 'POST',
+      //   headers: {
+      //     'Content-Type': 'application/json'
+      //   },
+      //   body: JSON.stringify(eventData)
+      // });
+      
+      // return response.ok;
+    } catch (loggingError) {
+      console.error('Failed to log security event:', loggingError);
+    }
+  }
+  
+  return true;
+};

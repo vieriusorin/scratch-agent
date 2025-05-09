@@ -4,44 +4,15 @@ import { zodFunction, zodResponseFormat } from 'openai/helpers/zod'
 import { systemPrompt as defaultSystemPrompt } from './systemPrompt'
 import { z } from 'zod'
 import { getSummary } from './memory'
-
 /**
- * 
- * INFO: Never save system prompt in the database, just append it to the user's message.
- * Messages are the user's messages and the AI's messages can be saved to database.
+ * @description Run the LLM
+ * @param messages - The messages to run the LLM on
+ * @param tools - The tools to use
+ * @param temperature - The temperature to use
+ * @param systemPrompt - The system prompt to use
+ * @param conversationContext - The conversation context to use
+ * @returns The response from the LLM
  */
-
-// Add caching layer for LLM responses
-const responseCache = new Map();
-
-export const getCachedLLMResponse = async (prompt: string, options: any) => {
-  const cacheKey = JSON.stringify({ prompt, options });
-  
-  if (responseCache.has(cacheKey)) {
-    return responseCache.get(cacheKey);
-  }
-  
-  const response = await runLLM(options);
-  responseCache.set(cacheKey, response);
-  
-  return response;
-};
-
-// Add cache invalidation
-export const invalidateCache = (pattern?: RegExp) => {
-  if (!pattern) {
-    responseCache.clear();
-    return;
-  }
-  
-  // Selectively invalidate cache entries
-  for (const key of responseCache.keys()) {
-    if (pattern.test(key)) {
-      responseCache.delete(key);
-    }
-  }
-};
-
 export const runLLM = async ({
   messages,
   tools,
@@ -51,8 +22,10 @@ export const runLLM = async ({
   messages: AIMessage[]
   tools: any[],
   temperature?: number
-  systemPrompt?: string
+  systemPrompt?: string,
+  conversationContext?: Record<string, any>
 }) => {
+
   const summary = await getSummary()
   const formattedTools = tools.map(zodFunction)
 

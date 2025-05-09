@@ -6,6 +6,8 @@ import { getMovieSearchTool, movieSearchToolDefinition } from './tools/movieSear
 import { createCalendarEvent, calendarEventToolDefinition } from './tools/createCalendarEvent';
 import { getCurrentDate, getCurrentDateToolDefinition } from './tools/getCurrentDate';
 import { logErrorToService } from './utils/errorLogging';
+import { detectPromptInjection } from './tools/promptInjectionDetector';
+import { promptInjectionDetectorDefinition } from './tools/promptInjectionDetector';
 
 /**
  * Run the tool
@@ -24,6 +26,8 @@ export const runTool = async (
   }
 
   switch (toolCall.function.name) {
+    case promptInjectionDetectorDefinition.name:
+      return detectPromptInjection(input)
     case getCurrentDateToolDefinition.name:
       return getCurrentDate(input)
     case generateImageToolDefinition.name:

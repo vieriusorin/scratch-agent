@@ -1,59 +1,17 @@
 import { addMessages, getMessages, saveToolResponse } from './memory'
-import { runApprovalCheck, runLLM } from './llm'
+import { runLLM } from './llm'
 import { showLoader, logMessage } from './ui'
 import { runTool } from './toolRunner'
-import type { AIMessage } from './types'
-import { calendarEventToolDefinition } from './tools/createCalendarEvent'
 import { redditToolDefinition } from './tools/reddit'
-
-/**
- * @description Handle the image approval check
- * @param history - The history of messages
- * @param userMessage - The user's message
- * @returns The agent's response
- */
-// 1. First, modify the handleApprovalCheck function to be more explicit
-const handleApprovalCheck = async (history: AIMessage[], userMessage: string) => {
-  // Get the last AI message (not the last message overall)
-  const lastAIMessage = history.filter(msg => msg.role === 'assistant').pop();
-  
-  // If no AI message or no tool calls, return false (no approval needed)
-  if (!lastAIMessage?.tool_calls) {
-    return false;
-  }
-  
-  // Get the reddit tool call if it exists
-  const redditToolCall = lastAIMessage.tool_calls.find(
-    call => call.function.name === redditToolDefinition.name
-  );
-  
-  // If no reddit tool call, return false (no approval needed)
-  if (!redditToolCall) {
-    return false;
-  }
-  
-  // Parse the arguments to show the user what they're approving
-  const args = JSON.parse(redditToolCall.function.arguments);
-  
-  // Run approval check with explicit instructions
-  const loader = showLoader('Processing approval check...');
-  loader.update(`Checking approval...`);
-  const approved = await runApprovalCheck(userMessage, args);
- 
-  if (approved) {
-    loader.update(`Creating reddit post: ${args.title || 'Reddit Post'}`);
-    const toolResponse = await runTool(redditToolCall, userMessage);
-    loader.update(`Reddit post created`);
-    await saveToolResponse(redditToolCall.id, toolResponse);
-  } else {
-    // User did not approve, save response
-    await saveToolResponse(redditToolCall.id, 
-      'User did not explicitly approve the reddit post creation');
-  }
-  
-  loader.stop();
-  return true;
-}
+import { detectSuspiciousPatterns, sanitizeUserInput } from './utils/inputSanitizer'
+import { handleApprovalCheck } from './utils/handleApprovalCheck'
+import { 
+  analyzeContextShift, 
+  initializeConversationContext, 
+  incrementInjectionAttempts,
+  getConversationContext 
+} from './utils/conversationContext'
+import { logErrorToService } from './utils/errorLogging'
 
 /**
  * @description Run the agent
@@ -68,17 +26,79 @@ export const runAgent = async ({
   userMessage: string
   tools: any[]
 }) => {
-  // Get the history of messages
+  // Sanitize user input before processing
+  const sanitizedMessage = sanitizeUserInput(userMessage);
+
+  // Get the message history
   const history = await getMessages();
+  
+  // Initialize conversation context if this is first run
+  if (history.length > 0 && getConversationContext().mainTopics.length === 0) {
+    await initializeConversationContext(history);
+  }
+  
+  // First check for basic suspicious patterns
+  const isPatternSuspicious = detectSuspiciousPatterns(userMessage);
+  
+  if (isPatternSuspicious) {
+    // Log suspicious input for review
+    console.warn('Suspicious pattern detected:', userMessage);
+    logErrorToService({
+      toolName: 'inputSanitizer',
+      error: 'Suspicious pattern detected in user input',
+      timestamp: new Date().toISOString()
+    });
+    return { 
+      blocked: true, 
+      reason: 'Your message contains patterns that may be unsafe. Please rephrase your request.' 
+    };
+  }
+  
+  // Then check for context-based suspicious shifts
+  const contextAnalysis = await analyzeContextShift(sanitizedMessage, history);
+  
+  if (contextAnalysis.isInjectionAttempt && contextAnalysis.confidence > 0.7) {
+    // High confidence this is an injection attempt
+    console.warn('Context-based injection attempt detected:', userMessage);
+    console.warn('Reasoning:', contextAnalysis.reasoning);
+    
+    // Log the attempt
+    logErrorToService({
+      toolName: 'conversationContext',
+      error: 'Context-based injection attempt detected',
+      stack: JSON.stringify({
+        message: sanitizedMessage,
+        confidence: contextAnalysis.confidence,
+        reasoning: contextAnalysis.reasoning
+      }),
+      timestamp: new Date().toISOString()
+    });
+    
+    // Increment the count of potential injection attempts
+    incrementInjectionAttempts();
+    
+    return { 
+      blocked: true, 
+      reason: 'Your message appears to be an abrupt topic change that might be unsafe. Please continue the current conversation naturally.' 
+    };
+  } else if (contextAnalysis.isInjectionAttempt && contextAnalysis.confidence > 0.4) {
+    // Medium confidence - add a warning but process the message
+    console.warn('Potential context shift detected:', userMessage);
+    console.warn('Reasoning:', contextAnalysis.reasoning);
+    
+    // Note the potential attempt but continue
+    incrementInjectionAttempts();
+  }
+
   // Handle the approval check
-  const isApproved = await handleApprovalCheck(history, userMessage);
+  const isApproved = await handleApprovalCheck(history, sanitizedMessage);
 
   if (!isApproved) {
-    await addMessages([{ role: 'user', content: userMessage }])
+    await addMessages([{ role: 'user', content: sanitizedMessage }])
   }
 
   // Add the user's message to the history
-  await addMessages([{ role: 'user', content: userMessage }])
+  await addMessages([{ role: 'user', content: sanitizedMessage }])
 
   const loader = showLoader('🤔')
 
@@ -88,7 +108,7 @@ export const runAgent = async ({
 
     // Run the LLM
     const response = await runLLM({ messages: history, tools })
-    
+
     // Add the LLM's response to the history
     await addMessages([response])
 
@@ -98,7 +118,7 @@ export const runAgent = async ({
       loader.stop()
       return getMessages()
     }
-    
+
     // If the LLM's response is a tool call, run the tool
     if (response.tool_calls) {
       // Get the first tool call
@@ -123,7 +143,7 @@ export const runAgent = async ({
       }
 
       // Tool response
-      const toolResponse = await runTool(toolCall, userMessage)
+      const toolResponse = await runTool(toolCall, sanitizedMessage)
       // Save the tool response
       await saveToolResponse(toolCall.id, toolResponse)
       // Update the loader

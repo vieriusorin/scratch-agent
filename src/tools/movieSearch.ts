@@ -10,13 +10,13 @@ import { z } from "zod";
 export const movieSearchToolDefinition = {
     name: 'movieSearch',
     parameters: z.object({
-      query: z.string().describe('The search query for finding movies'),
-      genre: z.string().optional().describe('Filter movies by genre'),
-      director: z.string().optional().describe('Filter movies by director'),
+        query: z.string().describe('The search query for finding movies'),
+        genre: z.string().nullable().describe('Filter movies by genre'),
+        director: z.string().nullable().describe('Filter movies by director'),
     }),
     description:
-      'Searches for movies and information about them, including title, year, genre, director, actors, rating, and description. Use this to answer questions about movies.',
-  };
+        'Searches for movies and information about them, including title, year, genre, director, actors, rating, and description. Use this to answer questions about movies.',
+};
 
 type Args = z.infer<typeof movieSearchToolDefinition.parameters>;
 
@@ -31,14 +31,14 @@ type Args = z.infer<typeof movieSearchToolDefinition.parameters>;
 export const getMovieSearchTool: ToolFn<Args> = async ({ userMessage, toolArgs }) => {
     let results;
     try {
-        results = await queryMovies({query: toolArgs.query});
+        results = await queryMovies({ query: toolArgs.query });
     } catch (e) {
         console.error(e);
         return 'Error: Could not query the db for movies';
     }
     const formattedResults = results.map((result) => {
         const { metadata, data } = result;
-        
+
         return {
             ...metadata,
             description: data,

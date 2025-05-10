@@ -21,7 +21,7 @@ export const calendarEventToolDefinition = {
         participants: z.array(z.string()).describe('The participants of the event'),
         time: z.string().describe('The time of the event'),
         timeZone: z.string().describe('The time zone for the event (IANA format like "America/New_York" or "Europe/London")'),
-        currentDate: z.string().optional().describe('The current date from the system')
+        currentDate: z.string().nullable().describe('The current date from the system')
     }),
     description: `Parses user messages for calendar invitations by extracting
         Event name
@@ -50,29 +50,29 @@ type Args = z.infer<typeof calendarEventToolDefinition.parameters>;
  */
 export const createCalendarEvent: ToolFn<Args, string> = async ({ toolArgs, userMessage }) => {
     // Handle defaults at runtime instead of in the schema
-    const { 
-        event, 
-        date, 
-        participants, 
-        time, 
-        timeZone, 
-        currentDate = new Date().toISOString() 
+    const {
+        event,
+        date,
+        participants,
+        time,
+        timeZone,
+        currentDate = new Date().toISOString()
     } = toolArgs;
-    
+
     // Apply default time zone if not provided or empty
     const effectiveTimeZone = timeZone || 'UTC';
-    
+
     // Format the datetime with time zone information
     let formattedDateTime;
     try {
         // Create safer date handling with fallbacks
         // First, try a direct parsing approach with input validation
         console.log(`Attempting to parse date: "${date}" and time: "${time}"`);
-        
+
         // Normalize date format - this handles many common formats
         let normalizedDate = date;
         let normalizedTime = time;
-        
+
         // Simple date normalization for common formats
         // If date doesn't match YYYY-MM-DD pattern, try to convert it
         if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) {
@@ -88,7 +88,7 @@ export const createCalendarEvent: ToolFn<Args, string> = async ({ toolArgs, user
                 console.error(`Failed to normalize date: ${date}`, err);
             }
         }
-        
+
         // Simple time normalization for common formats
         // If time doesn't match HH:MM format, try to convert it
         if (!/^\d{1,2}:\d{2}(:\d{2})?$/.test(time)) {
@@ -103,32 +103,32 @@ export const createCalendarEvent: ToolFn<Args, string> = async ({ toolArgs, user
                 console.error(`Failed to normalize time: ${time}`, err);
             }
         }
-        
+
         // Now try to create a JavaScript date object
         // First, with ISO 8601 format
         let eventDate = new Date(`${normalizedDate}T${normalizedTime}`);
-        
+
         // If that fails, try other approaches
         if (isNaN(eventDate.getTime())) {
             // Try with space instead of T
             eventDate = new Date(`${normalizedDate} ${normalizedTime}`);
-            
+
             // If still invalid, use current date as fallback but keep the time if possible
             if (isNaN(eventDate.getTime())) {
                 console.log('Using fallback date handling');
                 const today = new Date();
                 const [hours, minutes] = normalizedTime.split(':').map(Number);
-                
+
                 if (!isNaN(hours) && !isNaN(minutes)) {
                     today.setHours(hours, minutes, 0, 0);
                 }
-                
+
                 eventDate = today;
             }
         }
-        
+
         console.log(`Successfully created Date object: ${eventDate.toString()}`);
-        
+
         // Format the date with time zone information using Intl.DateTimeFormat
         formattedDateTime = new Intl.DateTimeFormat('en-US', {
             year: 'numeric',
@@ -139,32 +139,32 @@ export const createCalendarEvent: ToolFn<Args, string> = async ({ toolArgs, user
             timeZone: effectiveTimeZone,
             timeZoneName: 'long'
         }).format(eventDate);
-        
+
         console.log(`Formatted datetime: ${formattedDateTime}`);
     } catch (error) {
         console.error('Error formatting date with time zone:', error);
         // Provide a simple fallback that doesn't rely on Date parsing
         formattedDateTime = `${date} at ${time} (${effectiveTimeZone})`;
     }
-    
+
     // Create a unique filename based on event name and timestamp
     const sanitizedEventName = event.replace(/[^a-z0-9]/gi, '_').toLowerCase();
     const timestamp = Date.now();
     const filename = `${sanitizedEventName}_${timestamp}.json`;
-    
+
     // Define the directory where events will be stored
     const eventsDir = path.join(process.cwd(), 'events');
-    
+
     // Create the directory if it doesn't exist
     try {
         await fs.mkdir(eventsDir, { recursive: true });
     } catch (error) {
         console.error('Error creating events directory:', error);
     }
-    
+
     // Create the full file path
     const filePath = path.join(eventsDir, filename);
-    
+
     // Create the event object with all relevant information
     const eventObject = {
         event,
@@ -180,12 +180,12 @@ export const createCalendarEvent: ToolFn<Args, string> = async ({ toolArgs, user
             creationTimestamp: timestamp
         }
     };
-    
+
     // Convert the event object to JSON and write it to the file
     try {
         await fs.writeFile(filePath, JSON.stringify(eventObject, null, 2));
         console.log(`Event saved to ${filePath}`);
-        
+
         // Return a success message along with the event details
         return `
         Event: ${event}
@@ -197,7 +197,7 @@ export const createCalendarEvent: ToolFn<Args, string> = async ({ toolArgs, user
         `;
     } catch (error) {
         console.error('Error writing event to file:', error);
-        
+
         // Return an error message
         return `
         Event: ${event}

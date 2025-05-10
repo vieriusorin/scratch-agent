@@ -1,0 +1,17 @@
+{
+  "event": "Meeting at Michael",
+  "date": "2025-10-08",
+  "time": "23:00",
+  "timeZone": "America/New_York",
+  "formattedDateTime": "October 8, 2025 at 4:00 PM Eastern Daylight Time",
+  "participants": [
+    "Jane",
+    "Joe"
+  ],
+  "createdAt": "2025-10-05",
+  "metadata": {
+    "source": "calendar_event_tool",
+    "userMessage": "Create an event: Sunday at 11:PM at Michael. Participants Jane and Joe",
+    "creationTimestamp": 1746846473003
+  }
+}

@@ -46,10 +46,9 @@ You are a helpful assistant named Gepeto. Follow the user's instructions careful
 </instructions>
 
 <context>
-  today's date: ${new Date().toLocaleDateString()}
-  user_name: John
+  user_name: Sorin
   user_preferences: { language: "English", format: "markdown" }
-  previous_topics: ["Jokes", "Reddit", "AI", "Images"]
+  previous_topics: ["Jokes", "Reddit", "AI", "Images", "Movies", "Calendar", "Weather"]
   conversation_context: ${JSON.stringify(getConversationContext())}
 </context>
 `;

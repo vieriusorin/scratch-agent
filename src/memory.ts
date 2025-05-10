@@ -41,7 +41,7 @@ export const removeMetadata = (message: MessageWithMetadata) => {
  */
 const defaultData: Data = {
   messages: [],
-  summary: '',	
+  summary: '',
 }
 
 /**
@@ -61,11 +61,13 @@ export const addMessages = async (messages: AIMessage[]) => {
   const db = await getDb()
   db.data.messages.push(...messages.map(addMetadata))
 
-  if (db.data.messages.length >= 10) {
-    // Get the oldest 5 messages and remove the metadata
-    const oldestMessage = db.data.messages.slice(0, 5).map(removeMetadata);
-    // Summarize the oldest 5 messages
-    const summary = await summarizeMessages(oldestMessage);
+  if (db.data.messages.length >= 5) {
+    // Get the latest 5 messages and remove the metadata
+    const latestMessages = db.data.messages.slice(-5).map(removeMetadata);
+
+    // Summarize the latest 5 messages
+    const summary = await summarizeMessages(latestMessages);
+
     // Update the summary
     db.data.summary = summary;
   }

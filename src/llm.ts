@@ -31,8 +31,11 @@ export const runLLM = async ({
   const summary = await getSummary()
   const formattedTools = tools?.map(zodFunction) ?? []
 
+  // Use router to select model
+  const model = routeLLMModel(messages);
+
   const response = await openai.chat.completions.create({
-    model: 'gpt-4o-mini',
+    model,
     temperature,
     messages: [
       {
@@ -159,5 +162,43 @@ export const summarizeMessages = async (messages: AIMessage[], maxTokens: number
 
     // Generic fallback
     return `Unable to generate summary (${messages.length} messages in conversation)`
+  }
+}
+
+// Enhanced LLM router based on domain and complexity
+function routeLLMModel(messages: AIMessage[]): string {
+  const userContent = messages
+    .filter(m => m.role === 'user')
+    .map(m => m.content)
+    .join(' ');
+
+  // --- Domain detection helpers ---
+  function isCodeRelated(query: string): boolean {
+    // Simple heuristic: look for code keywords or code blocks
+    return /\b(function|class|def|var|let|const|import|export|public|private|#include|<\/?[a-z]+>|\{\}|=>|\(\)|;|\bpython\b|\bjavascript\b|\bcode\b|```)/i.test(query);
+  }
+  function isCreativeWriting(query: string): boolean {
+    // Heuristic: look for creative writing cues
+    return /(write|story|poem|novel|creative|fiction|dialogue|scene|character|plot|prose|haiku|sonnet|short story|essay)/i.test(query);
+  }
+  function estimateComplexity(query: string): number {
+    // Naive complexity: length + punctuation + unique words
+    const lengthScore = Math.min(query.length / 500, 1);
+    const punctuationScore = (query.match(/[.,;:!?]/g) || []).length / 20;
+    const uniqueWords = new Set(query.split(/\s+/)).size;
+    const uniqueScore = Math.min(uniqueWords / 100, 1);
+    // Weighted sum (tweak as needed)
+    return Math.min(lengthScore * 0.5 + punctuationScore * 0.2 + uniqueScore * 0.3, 1);
+  }
+
+  // --- Model routing logic ---
+  if (isCodeRelated(userContent)) {
+    return 'gpt-4o-mini'; // Placeholder for code model
+  } else if (isCreativeWriting(userContent)) {
+    return 'gpt-4o-mini'; // Placeholder for creative writing model
+  } else if (estimateComplexity(userContent) > 0.8) {
+    return 'gpt-4o-mini'; // Placeholder for advanced model
+  } else {
+    return userContent.length < 100 ? 'gpt-3.5-turbo' : 'gpt-4o-mini';
   }
 }

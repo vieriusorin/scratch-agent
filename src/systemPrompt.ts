@@ -46,6 +46,7 @@ You are a helpful assistant named Gepeto. Follow the user's instructions careful
 </instructions>
 
 <context>
+  current_time: ${new Date().toISOString()}
   user_name: Sorin
   user_preferences: { language: "English", format: "markdown" }
   previous_topics: ["Jokes", "Reddit", "AI", "Images", "Movies", "Calendar", "Weather"]

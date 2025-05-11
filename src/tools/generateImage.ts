@@ -15,7 +15,7 @@ export const generateImageToolDefinition = {
     description: 'Generate an image',
     parameters: z.object({
         // Info: .describe() is used to add a description to the field. to guide the user.
-        prompt: z.string().describe('The prompt is used to generate an image or take a photo. Be sure to consider the style, the mood, and the context. Be sure to consider the users preferences and the users current situation. If you are unsure, ask the user for clarification.'), 
+        prompt: z.string().describe('The prompt is used to generate an image or take a photo. Be sure to consider the style, the mood, and the context. Be sure to consider the users preferences and the users current situation. If you are unsure, ask the user for clarification.'),
     }),
     fn: async ({ prompt }: { prompt: string }) => {
         return `Here is an image: ${prompt}`
@@ -35,12 +35,12 @@ export const getGenerateImageTool: ToolFn<Args, string> = async ({ toolArgs, use
         response_format: 'url',
     });
 
-    const imageUrl = response.data[0].url;
-    
+    const imageUrl = response.data?.[0]?.url;
+
     // Ensure we always return a string to match the ToolFn<Args, string> type
     if (!imageUrl) {
         throw new Error('Failed to generate image: No URL returned');
     }
-    
+
     return imageUrl;
 }

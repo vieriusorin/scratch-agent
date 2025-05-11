@@ -18,6 +18,6 @@ type Args = z.infer<typeof getCurrentDateToolDefinition.parameters>;
  * @returns The current date
  */
 export const getCurrentDate: ToolFn<Args, string> = async ({ toolArgs, userMessage }) => {
-    console.log('getCurrentDate tool called')
+    console.log(new Date().toLocaleDateString(), 'getCurrentDate tool called')
     return new Date().toLocaleDateString();
 }
